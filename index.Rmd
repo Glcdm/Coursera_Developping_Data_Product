@@ -1,0 +1,68 @@
+---
+title       : Predicting Miles per gallon on mtcars data set
+subtitle    : Presentation V1
+author      : Gauthier le Courtois du Manoir
+job         : 
+framework   : io2012   # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Introduction
+
+This presentation is one part of the Coursera MOOC "Developping Data Products", part of the Data Science specialization given by the John Hopkins Bloomberg School of Public Health.
+This is a presentation made with Shiny. 
+
+The following slides will give you more detail about the application
+
+If you want more detail about Shiny please visit http://shiny.rstudio.com/
+
+
+--- .class #id 
+
+## The application
+
+This shiny project is about prediction miles per gallon on the mtcars dataset
+
+The regression model is based on three inputs :
+
+* am (Transmission : Manual or Automatic)
+
+* wt (Weight (1000 lbs))
+
+* qsec (1/4 mile time)
+
+The user can modify those three inputs and the application will give you the estimated Miles per gallon
+
+
+--- .class #id 
+
+## The algorithm
+
+``` {r, eval=FALSE}
+output$Regression_Model <-renderText({
+      data(mtcars)
+      #We transform am variable to put it as a factor variable
+      mtcars$am2<-factor(mtcars$am, labels=c("Automatic","Manual"))
+      #We create our model
+      fit2<-lm(mpg~am+wt+qsec-1, data=mtcars)
+     #[...]
+      #This is the out put :
+      as.character(predict(fit2, newdata=fit2.new))
+  })
+```
+
+--- .class #id 
+
+## Let's try it now !
+
+Go to the following link : 
+
+https://galcdm.shinyapps.io/Coursera_Project_Developping_Data_Product/
+
+
+
+
