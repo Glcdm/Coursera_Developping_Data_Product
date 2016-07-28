@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predicting Miles per gallon on mtcars data set</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Predicting Miles per gallon on mtcars data set">
+  <meta name="author" content="Gauthier le Courtois du Manoir">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Predicting Miles per gallon on mtcars data set</h1>
+    <h2>Presentation V1</h2>
+    <p>Gauthier le Courtois du Manoir<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This presentation is one part of the Coursera MOOC &quot;Developping Data Products&quot;, part of the Data Science specialization given by the John Hopkins Bloomberg School of Public Health.
+This is a presentation made with Shiny. </p>
+
+<p>The following slides will give you more detail about the application</p>
+
+<p>If you want more detail about Shiny please visit <a href="http://shiny.rstudio.com/">http://shiny.rstudio.com/</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This shiny project is about prediction miles per gallon on the mtcars dataset</p>
+
+<p>The regression model is based on three inputs :</p>
+
+<ul>
+<li><p>am (Transmission : Manual or Automatic)</p></li>
+<li><p>wt (Weight (1000 lbs))</p></li>
+<li><p>qsec (1/4 mile time)</p></li>
+</ul>
+
+<p>The user can modify those three inputs and the application will give you the estimated Miles per gallon</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The algorithm</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">output$Regression_Model &lt;-renderText({
+      data(mtcars)
+      #We transform am variable to put it as a factor variable
+      mtcars$am2&lt;-factor(mtcars$am, labels=c(&quot;Automatic&quot;,&quot;Manual&quot;))
+      #We create our model
+      fit2&lt;-lm(mpg~am+wt+qsec-1, data=mtcars)
+     #[...]
+      #This is the out put :
+      as.character(predict(fit2, newdata=fit2.new))
+  })
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s try it now !</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Go to the following link : </p>
+
+<p><a href="https://galcdm.shinyapps.io/Coursera_Project_Developping_Data_Product/">https://galcdm.shinyapps.io/Coursera_Project_Developping_Data_Product/</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The application'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='The algorithm'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Let&#39;s try it now !'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
